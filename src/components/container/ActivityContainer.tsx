@@ -109,10 +109,12 @@ const dummyData = [
   },
 ];
 
-const getDummyData = new Promise<Activity[]>((resolve, reject) => {
-  if (!dummyData) reject("No dummy data");
-  resolve(dummyData);
-});
+const getDummyData = () => {
+  return new Promise<Activity[]>((resolve, reject) => {
+    if (!dummyData) reject("No dummy data");
+    resolve(dummyData);
+  });
+};
 
 const ActivityContainer = () => {
   const [activities, setActivities] = useState<Activity[]>([]);

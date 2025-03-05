@@ -2,9 +2,12 @@ import React from "react";
 
 interface ProfileCardProps {
   profileName: string;
+  setTimeCategory: React.Dispatch<
+    React.SetStateAction<"daily" | "weekly" | "monthly">
+  >;
 }
 
-const ProfileCard = ({ profileName }: ProfileCardProps) => {
+const ProfileCard = ({ profileName, setTimeCategory }: ProfileCardProps) => {
   return (
     <div>
       <header>
@@ -13,13 +16,31 @@ const ProfileCard = ({ profileName }: ProfileCardProps) => {
       </header>
       <ul>
         <li>
-          <button>Daily</button>
+          <button
+            onClick={() => {
+              setTimeCategory("daily");
+            }}
+          >
+            Daily
+          </button>
         </li>
         <li>
-          <button>Weekly</button>
+          <button
+            onClick={() => {
+              setTimeCategory("weekly");
+            }}
+          >
+            Weekly
+          </button>
         </li>
         <li>
-          <button>Monthly</button>
+          <button
+            onClick={() => {
+              setTimeCategory("monthly");
+            }}
+          >
+            Monthly
+          </button>
         </li>
       </ul>
     </div>

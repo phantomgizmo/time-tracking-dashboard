@@ -1,6 +1,17 @@
 export default interface Activity {
-  activityName: string;
-  timeCategory: "day" | "week" | "month";
-  currentTime: number;
-  previousTime: number;
+  title: string;
+  timeframes: {
+    daily: {
+      current: number;
+      previous: number;
+    },
+    weekly: {
+      current: number;
+      previous: number;
+    },
+    monthly: {
+      current: number;
+      previous: number;
+    }
+  }
 }

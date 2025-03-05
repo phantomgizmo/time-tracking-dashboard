@@ -1,33 +1,28 @@
 import React from "react";
 
+import Activity from "@/types/activity";
+
 import iconEllipsis from "@/assets/icon-ellipsis.svg";
 
 interface ActivityCardProps {
-  activityName: string;
-  currentTime: number;
-  previousTime: number;
-  timeCategory: "day" | "week" | "month";
+  activity: Activity;
+  timeCategory: "daily" | "weekly" | "monthly";
 }
 
-const ActivityCard = ({
-  activityName,
-  currentTime,
-  previousTime,
-  timeCategory,
-}: ActivityCardProps) => {
+const ActivityCard = ({ activity, timeCategory }: ActivityCardProps) => {
   return (
     <div>
       <section>
-        <h1>{activityName}</h1>
+        <h1>{activity.title}</h1>
         <button>
           <img src={iconEllipsis} alt="" />
         </button>
       </section>
       <section>
-        <p>{currentTime}hrs</p>
+        <p>{activity.timeframes[timeCategory].current}hrs</p>
         <p>
           Last {timeCategory.charAt(0).toUpperCase() + timeCategory.slice(1)} -{" "}
-          {previousTime}hrs
+          {activity.timeframes[timeCategory].previous}hrs
         </p>
       </section>
     </div>

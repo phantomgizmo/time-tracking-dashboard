@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import Activity from "@/types/activity";
 
 import ActivityCard from "@/components/ui/ActivityCard";
+
+import { timeCategoryContext } from "@/providers/TimeCategory";
 
 interface ActivitiesProps {
   className?: string;
@@ -17,6 +19,8 @@ const Activities = ({
   loading,
   error,
 }: ActivitiesProps) => {
+  const timeCategory = useContext(timeCategoryContext);
+
   if (loading && !error) return <div>Loading...</div>;
   if (!loading && error) return <div>Error</div>;
   if (!activities) return null;
@@ -24,12 +28,7 @@ const Activities = ({
   return (
     <div className={className}>
       {activities.map((activity) => (
-        <ActivityCard
-          activityName={activity.activityName}
-          timeCategory={activity.timeCategory}
-          currentTime={activity.currentTime}
-          previousTime={activity.previousTime}
-        />
+        <ActivityCard activity={activity} timeCategory={timeCategory} />
       ))}
     </div>
   );
