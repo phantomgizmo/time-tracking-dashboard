@@ -1,5 +1,7 @@
+export type Title = "Work" | "Play" | "Study" | "Exercise" | "Social" | "Self Care"
+
 export default interface Activity {
-  title: string;
+  title: Title;
   timeframes: {
     daily: {
       current: number;
@@ -15,3 +17,4 @@ export default interface Activity {
     }
   }
 }
+

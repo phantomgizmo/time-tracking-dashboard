@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import Activity from "@/types/activity";
 
 import ActivityCard from "@/components/ui/ActivityCard";
 
-import { timeCategoryContext } from "@/providers/TimeCategory";
+import { timeCategoryContext } from "@/providers/TimeCategory/context";
 
 interface ActivitiesProps {
   className?: string;

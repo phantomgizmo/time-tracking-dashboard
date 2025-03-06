@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-import ProfileCard from "@/components/ui/ProfileCard";
 import ActivityContainer from "@/components/container/ActivityContainer";
+import ProfileCard from "@/components/ui/ProfileCard";
 import TimeCategoryProvider from "@/providers/TimeCategory";
 
 const TimeTrackingDashboard = () => {
@@ -10,7 +10,7 @@ const TimeTrackingDashboard = () => {
   >("daily");
 
   return (
-    <div className="grid">
+    <div className="grid gap-4">
       <ProfileCard
         setTimeCategory={setTimeCategory}
         profileName="Jeremy Robson"

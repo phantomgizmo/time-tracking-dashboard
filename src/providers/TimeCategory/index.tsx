@@ -1,10 +1,6 @@
-import { createContext } from "react";
-
 import React from "react";
 
-export const timeCategoryContext = createContext<
-  "daily" | "weekly" | "monthly"
->("daily");
+import { timeCategoryContext } from "./context";
 
 const TimeCategoryProvider = ({
   value,

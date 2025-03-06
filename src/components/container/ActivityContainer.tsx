@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Activity from "@/types/activity";
 
@@ -112,7 +112,7 @@ const dummyData = [
 const getDummyData = () => {
   return new Promise<Activity[]>((resolve, reject) => {
     if (!dummyData) reject("No dummy data");
-    resolve(dummyData);
+    resolve(dummyData as Activity[]);
   });
 };
 
@@ -125,8 +125,8 @@ const ActivityContainer = () => {
     setLoading(true);
 
     getDummyData()
-      .then((data) => {
-        setActivities(data as Activity[]);
+      .then((data: Activity[]) => {
+        setActivities(data);
         setLoading(false);
       })
       .catch((e) => {
@@ -141,7 +141,12 @@ const ActivityContainer = () => {
   }, []);
 
   return (
-    <Activities activities={activities} error={isError} loading={isLoading} />
+    <Activities
+      className="flex flex-col gap-4"
+      activities={activities}
+      error={isError}
+      loading={isLoading}
+    />
   );
 };
 
