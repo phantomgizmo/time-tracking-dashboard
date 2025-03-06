@@ -12,7 +12,7 @@ const TimeTrackingDashboard = () => {
   return (
     <div className="grid gap-4">
       <ProfileCard
-        setTimeCategory={setTimeCategory}
+        // setTimeCategory={setTimeCategory}
         profileName="Jeremy Robson"
       />
       <TimeCategoryProvider value={timeCategory}>

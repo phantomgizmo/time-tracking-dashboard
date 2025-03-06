@@ -28,7 +28,11 @@ const ActivityCard = ({ activity, timeCategory }: ActivityCardProps) => {
 
   return (
     <div
-      className={`${contentVariants[activity.title]} before:top-[-1rem] before:right-4 before:z-[1] overflow-hidden before:absolute relative mx-auto w-[285px] flex flex-col justify-end rounded-xl pt-8 ${bgVariants[activity.title]}`}
+      className={`${
+        contentVariants[activity.title]
+      } before:top-[-1rem] before:right-4 before:z-[1] overflow-hidden before:absolute relative mx-auto w-[285px] flex flex-col justify-end rounded-xl pt-8 ${
+        bgVariants[activity.title]
+      }`}
     >
       <div className="relative z-[2] flex flex-col gap-1 bg-blue-700 rounded-xl px-4 py-6 text-white">
         <section className="flex justify-between">

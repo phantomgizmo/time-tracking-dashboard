@@ -27,8 +27,8 @@ const Activities = ({
 
   return (
     <div className={className}>
-      {activities.map((activity) => (
-        <ActivityCard activity={activity} timeCategory={timeCategory} />
+      {activities.map((activity, i) => (
+        <ActivityCard key={i} activity={activity} timeCategory={timeCategory} />
       ))}
     </div>
   );
