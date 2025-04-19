@@ -1,128 +1,75 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React from 'react';
+import { cn } from '@/utils/utils';
 
-import imageJeremy from "@/assets/image-jeremy.png";
+import imageJeremy from '@/assets/image-jeremy.png';
 
 interface ProfileCardProps {
+  className?: string;
   profileName: string;
-  setTimeCategory?: React.Dispatch<
-    React.SetStateAction<"daily" | "weekly" | "monthly">
+  timeCategory: 'daily' | 'weekly' | 'monthly';
+  setTimeCategory: React.Dispatch<
+    React.SetStateAction<'daily' | 'weekly' | 'monthly'>
   >;
 }
 
-const ProfileCard = ({ profileName, setTimeCategory }: ProfileCardProps) => {
-  const activeButton = useRef<HTMLButtonElement | null>(null);
-  const [activeTimeCategory, setActiveTimeCategory] = useState<
-    "daily" | "weekly" | "monthly"
-  >("daily");
-
-  // const setTimeCategoryCallback = useCallback(
-  //   (timeCategory: "daily" | "weekly" | "monthly") => {
-  //     setTimeCategory(timeCategory);
-  //   },
-  //   [setTimeCategory]
-  // );
-
-  // const deactivateButton = (button: HTMLButtonElement | null) => {
-  //   button?.removeAttribute("disabled");
-  //   button?.classList.remove("text-white");
-  //   button?.classList.toggle("cursor-pointer");
-  // };
-
-  // const activateButton = useCallback(
-  //   (button: HTMLButtonElement) => {
-  //     const timeCategory = button.getAttribute("data-time-category") as
-  //       | "daily"
-  //       | "weekly"
-  //       | "monthly";
-  //     setTimeCategoryCallback(timeCategory);
-  //     button.toggleAttribute("disabled");
-  //     button.classList.toggle("text-white");
-  //     button.classList.remove("cursor-pointer");
-  //     activeButton.current = button;
-  //   },
-  //   [setTimeCategoryCallback]
-  // );
-
-  // const toggleActiveButton = useCallback((button: HTMLButtonElement) => {
-  //   deactivateButton(activeButton.current);
-  //   activeButton.current = button;
-  //   setActiveTimeCategory(
-  //     activeButton.current.getAttribute("data-time-category") as
-  //       | "daily"
-  //       | "weekly"
-  //       | "monthly"
-  //   );
-  // }, []);
-
-  const handleCategoryClick = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    const buttonClicked = e.target as HTMLButtonElement;
-    console.log(buttonClicked);
-    // toggleActiveButton(buttonClicked);
-  };
-
-  // // Toggle active button each time activeTimeCategory changed
-  // useEffect(() => {
-  //   activateButton(activeButton.current as HTMLButtonElement);
-  // }, [activeTimeCategory, activateButton]);
-
-  // Set initial value for active time category
-  useEffect(() => {
-    // activateButton(activeButton.current as HTMLButtonElement);
-    // if (activeButton.current) {
-    //   console.log(activeButton.current);
-    // }
-    console.log("LOL");
-  }, []);
-
-  // useEffect(() => {
-  //   console.log("RENDERED");
-  //   // console.log(activeButton);
-  // });
-
+const ProfileCard = ({
+  className,
+  profileName,
+  timeCategory,
+  setTimeCategory
+}: ProfileCardProps) => {
   return (
-    <div className="w-[285px] mx-auto flex flex-col font-[rubik] bg-blue-700 rounded-xl">
-      <header className="flex items-center gap-4 bg-blue rounded-xl py-4 px-6">
-        <div className="rounded-full bg-white p-1 ">
+    <div
+      className={cn(
+        'mx-auto flex w-[285px] flex-col rounded-xl bg-blue-700 font-[rubik] lg:max-w-[205px]',
+        className
+      )}
+    >
+      <header className="bg-blue flex items-center gap-4 rounded-xl px-6 py-4 lg:flex-col lg:items-start lg:gap-6">
+        <div className="rounded-full bg-white p-1">
           <img
             className="size-14"
             src={imageJeremy}
             alt="Image of jeremy smiling :D"
           />
         </div>
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start lg:mb-12">
           <small className="text-stone-400">Report for</small>
-          <p className="text-stone-100 text-xl font-thin">{profileName}</p>
+          <p className="text-xl font-thin text-stone-100 lg:text-start lg:text-4xl">
+            {profileName}
+          </p>
         </div>
       </header>
-      <ul className="flex justify-between py-4 px-6 text-blue-600">
+      <ul className="flex justify-between px-6 py-4 text-blue-600 lg:flex-col lg:items-start lg:gap-3">
         <li>
           <button
-            ref={"daily" === activeTimeCategory ? activeButton : null}
-            className="hover:text-white cursor-pointer active:text-white"
-            onClick={handleCategoryClick}
-            data-time-category="daily"
+            className={cn(
+              'cursor-pointer hover:text-white',
+              timeCategory === 'daily' && 'text-white'
+            )}
+            onClick={() => setTimeCategory('daily')}
           >
             Daily
           </button>
         </li>
         <li>
           <button
-            ref={"weekly" === activeTimeCategory ? activeButton : null}
-            className="hover:text-white cursor-pointer active:text-white"
-            onClick={handleCategoryClick}
-            data-time-category="weekly"
+            className={cn(
+              'cursor-pointer hover:text-white',
+              timeCategory === 'weekly' && 'text-white'
+            )}
+            onClick={() => setTimeCategory('weekly')}
           >
             Weekly
           </button>
         </li>
         <li>
           <button
-            ref={"monthly" === activeTimeCategory ? activeButton : null}
-            className="hover:text-white cursor-pointer active:text-white"
-            onClick={handleCategoryClick}
-            data-time-category="monthly"
+            className={cn(
+              'cursor-pointer hover:text-white',
+              timeCategory === 'monthly' && 'text-white'
+            )}
+            onClick={() => setTimeCategory('monthly')}
           >
             Monthly
           </button>

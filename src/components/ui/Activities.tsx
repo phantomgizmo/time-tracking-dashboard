@@ -1,10 +1,10 @@
-import { useContext } from "react";
+import { useContext } from 'react';
 
-import Activity from "@/types/activity";
+import Activity from '@/types/activity';
 
-import ActivityCard from "@/components/ui/ActivityCard";
+import ActivityCard from '@/components/ui/ActivityCard';
 
-import { timeCategoryContext } from "@/providers/TimeCategory/context";
+import { timeCategoryContext } from '@/providers/TimeCategory/context';
 
 interface ActivitiesProps {
   className?: string;
@@ -13,12 +13,7 @@ interface ActivitiesProps {
   error: boolean;
 }
 
-const Activities = ({
-  className,
-  activities,
-  loading,
-  error,
-}: ActivitiesProps) => {
+const Activities = ({ activities, loading, error }: ActivitiesProps) => {
   const timeCategory = useContext(timeCategoryContext);
 
   if (loading && !error) return <div>Loading...</div>;
@@ -26,11 +21,11 @@ const Activities = ({
   if (!activities) return null;
 
   return (
-    <div className={className}>
+    <>
       {activities.map((activity, i) => (
         <ActivityCard key={i} activity={activity} timeCategory={timeCategory} />
       ))}
-    </div>
+    </>
   );
 };
 
